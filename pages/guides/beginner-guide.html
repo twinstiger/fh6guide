@@ -75,30 +75,89 @@
     <div class="container">
       <p class="breadcrumb"><a href="../../index.html">Home</a> / <a href="index.html">Guides</a> / Beginner Guide</p>
       <h1>Forza Horizon 6 Beginner Guide: Start Your Japan Adventure</h1>
-    <img src="../../images/hero/hero.jpg" alt="Forza Horizon 6" style="width:100%;height:auto;display:block;margin-bottom:24px;border-radius:8px;">
-
     </div>
-    <div class="img-gallery">
-      <div class="gallery-item">
-        <img src="../../images/hero/hero.jpg" alt="FH6 Japan Beginner Guide" loading="lazy">
-        <div class="img-caption">FH6 Japan Beginner Guide</div>
-      </div>
-      <div class="gallery-item">
-        <img src="../../images/gallery/gallery_03.jpg" alt="Economy System" loading="lazy">
-        <div class="img-caption">Economy System</div>
-      </div>
-      <div class="gallery-item">
-        <img src="../../images/gallery/gallery_05.jpg" alt="Drift Racing" loading="lazy">
-        <div class="img-caption">Drift Racing</div>
-      </div>
-      <div class="gallery-item">
-        <img src="../../images/gallery/gallery_06.jpg" alt="Car Selection" loading="lazy">
-        <div class="img-caption">Car Selection</div>
-      </div>
-    </div>
-
-    
   </section>
+
+  <section class="hero-carousel" aria-label="Featured Images">
+    <div class="carousel-track">
+      <div class="carousel-slide active">
+        <img src="../../images/hero/hero.jpg" alt="FH6 Japan Beginner Guide" loading="eager">
+        <div class="carousel-caption">
+          <h2>Beginner Guide</h2>
+          <p>Everything you need to start your Japan adventure</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="../../images/gallery/gallery_03.jpg" alt="Economy System">
+        <div class="carousel-caption">
+          <h2>Economy System</h2>
+          <p>Credits & Forzathon Points explained</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="../../images/gallery/gallery_05.jpg" alt="Drift Racing">
+        <div class="carousel-caption">
+          <h2>Drift Racing</h2>
+          <p>Master the art of drifting</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="../../images/gallery/gallery_06.jpg" alt="Car Selection">
+        <div class="carousel-caption">
+          <h2>Best Starter Cars</h2>
+          <p>Pick your perfect ride</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-btn prev" aria-label="Previous">&#10094;</button>
+    <button class="carousel-btn next" aria-label="Next">&#10095;</button>
+    <div class="carousel-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+    </div>
+  </section>
+
+  <script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.dot');
+  const totalSlides = slides.length;
+  let autoTimer;
+
+  function updateCarousel() {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === currentSlide);
+    });
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  function moveSlide(dir) {
+    currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+    updateCarousel();
+    resetAuto();
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    updateCarousel();
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => moveSlide(1), 4000);
+  }
+
+  document.querySelector('.carousel-btn.prev').addEventListener('click', () => moveSlide(-1));
+  document.querySelector('.carousel-btn.next').addEventListener('click', () => moveSlide(1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+
+  autoTimer = setInterval(() => moveSlide(1), 4000);
+  </script>
 
   <main class="main-content">
     <div class="container">
