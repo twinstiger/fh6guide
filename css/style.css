@@ -1246,6 +1246,44 @@ td .car-class {
   font-size: 0.8rem;
 }
 
+
+/* ===== MENU FIXES ===== */
+/* Ensure nav-desktop dropdown doesn't overflow */
+.nav-desktop .dropdown {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Ensure guide cards have proper min-width to prevent squash */
+.guide-card {
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+/* Ensure grid items don't overflow viewport */
+.guides-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Ensure img-gallery items don't overflow */
+.img-gallery > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Ensure all table-wrapper contents scroll horizontally */
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Tab buttons shouldn't wrap oddly */
+.tab-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 @media (max-width: 992px) {
   .nav-desktop {
     display: none;
