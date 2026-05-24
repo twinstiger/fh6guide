@@ -128,13 +128,54 @@
     </div>
   </section>
 
-  <div class="hero-image">
-    <img src="images/hero/hero.jpg" alt="Forza Horizon 6 Japan" loading="eager" style="width:100%;height:auto;display:block;border-radius:8px;">
-    <img src="images/tracks/city.jpg" alt="Tokyo City Racing" loading="lazy" style="width:100%;height:auto;display:block;margin-top:12px;border-radius:8px;">
-    <img src="images/gallery/gallery_01.jpg" alt="FH6 Japan Gameplay" loading="lazy" style="width:100%;height:auto;display:block;margin-top:12px;border-radius:8px;">
-    <img src="images/gallery/gallery_02.jpg" alt="Mountain Touge Racing" loading="lazy" style="width:100%;height:auto;display:block;margin-top:12px;border-radius:8px;">
-    <img src="images/gallery/gallery_03.jpg" alt="Night Street Racing" loading="lazy" style="width:100%;height:auto;display:block;margin-top:12px;border-radius:8px;">
-  </div>
+  <section class="hero-carousel" aria-label="Featured Images">
+    <div class="carousel-track">
+      <div class="carousel-slide active">
+        <img src="images/hero/hero.jpg" alt="Forza Horizon 6 Japan" loading="eager">
+        <div class="carousel-caption">
+          <h2>Forza Horizon 6 Japan</h2>
+          <p>Dominate Japan — from Tokyo streets to mountain touge passes</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="images/tracks/city.jpg" alt="Tokyo City Racing">
+        <div class="carousel-caption">
+          <h2>Tokyo City Racing</h2>
+          <p>Neon-lit streets and high-speed circuits await</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="images/gallery/gallery_01.jpg" alt="FH6 Japan Gameplay">
+        <div class="carousel-caption">
+          <h2>500+ Cars to Collect</h2>
+          <p>From classics to hypercars — your garage awaits</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="images/gallery/gallery_02.jpg" alt="Mountain Touge Racing">
+        <div class="carousel-caption">
+          <h2>Mountain Touge Racing</h2>
+          <p>Carve through hairpins on real-inspired routes</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="images/gallery/gallery_03.jpg" alt="Night Street Racing">
+        <div class="carousel-caption">
+          <h2>Drift &amp; Touge Culture</h2>
+          <p>Build your reputation across Japan's racing scene</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-btn prev" onclick="moveSlide(-1)" aria-label="Previous">‹</button>
+    <button class="carousel-btn next" onclick="moveSlide(1)" aria-label="Next">›</button>
+    <div class="carousel-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
+      <span class="dot" onclick="goToSlide(4)"></span>
+    </div>
+  </section>
 
   <main class="main-content">
     <div class="container">
@@ -230,5 +271,42 @@
   </footer>
 
   <script src="js/header.js"></script>
+
+  <script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.dot');
+  const totalSlides = slides.length;
+  let autoTimer;
+
+  function updateCarousel() {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === currentSlide);
+    });
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  function moveSlide(dir) {
+    currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+    updateCarousel();
+    resetAuto();
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    updateCarousel();
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => moveSlide(1), 4000);
+  }
+
+  autoTimer = setInterval(() => moveSlide(1), 4000);
+  </script>
+
 </body>
 </html>
